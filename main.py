@@ -1,40 +1,43 @@
-from pytube import YouTube, Playlist
+from src.utils import Welcome
+from src.download import Videos, Playlists, Songs
 
-print('''
-  ______      __            ____                      __                __
- /_  __/_  __/ /_  ___     / __ \____ _      ______  / /___  ____ _____/ /
-  / / / / / / __ \/ _ \   / / / / __ \ | /| / / __ \/ / __ \/ __ `/ __  / 
- / / / /_/ / /_/ /  __/  / /_/ / /_/ / |/ |/ / / / / / /_/ / /_/ / /_/ /  
-/_/  \__,_/_.___/\___/  /_____/\____/|__/|__/_/ /_/_/\____/\__,_/\__,_/                           
-      
-      ''')
-
-VIDEO_URL = input('Informe a url do video:\n--> ')
-PLAYLIST_URL = 'https://www.youtube.com/playlist?list=PLyORnIW1xT6waC0PNjAMj33FdK2ngL_ik'
+Welcome()
 
 
-def download_video(video_url):
-    yt = YouTube(video_url)
-    video = yt.streams.get_highest_resolution()
-    video.download()
+def main():
+    while True:
+        print(
+            'Escolha um formato para download:\n[1] - Áudio\n[2] - Vídeo\n[3] - Playlist'
+        )
+        option = str(input('-->> '))
 
+        if (option in '123') and (len(option) == 1):
+            Welcome()
 
-def download_playlist(playlist_url):
-    playlist = Playlist(playlist_url)
-    for url in playlist:
-        yt = YouTube(url)
-        video = yt.streams.get_highest_resolution()
-        video.download(output_path='./downloads/playlist')
+            option = int(option)
+            url = str(
+                input(
+                    f"URL {'da' if option == 3 else 'do'} {'playlist' if option == 3 else 'video'}:\n-->> "
+                ))
 
+            if option == 1:
+                Songs(url)
+                break
+            elif option == 2:
+                Videos(url)
+                break
+            elif option == 3:
+                Playlists(url)
+                break
 
-def download_audio(video_url):
-    yt = YouTube(video_url)
-    audio = yt.streams.filter(only_audio=True)[0]
-    audio.download()
+        elif option == 'exit':
+            print('** GoodBye ^~^ **')
+            exit()
+
+        else:
+            Welcome()
+            continue
 
 
 if __name__ == '__main__':
-    download_playlist(PLAYLIST_URL)
-
-# for stream in yt.streams:
-#     print(stream)
+    main()
