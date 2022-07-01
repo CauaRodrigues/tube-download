@@ -1,5 +1,3 @@
-import requests
+from playsound import playsound
 
-url = requests.get(
-    'https://www.youtube.com/playlist?list=PLc0PaCztdgoqCAcaqwW0YS6lCWNfHk')
-print(url.status_code)
+playsound('./downloads/music/GHOSTEMANE.mp4')

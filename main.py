@@ -29,11 +29,9 @@ def main():
             elif option == 3:
                 Playlists(url)
                 break
-
         elif option == 'exit':
             print('** GoodBye ^~^ **')
             exit()
-
         else:
             Welcome()
             continue

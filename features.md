@@ -7,9 +7,9 @@
 	- [ ] Erro na extração do vídeo
 	- [ ] Vídeo Privado
 	- [ ] Bloqueado na Região
-- [ ] Salvar arquivos em uma pasta específica
+- [X] Salvar arquivos em uma pasta específica
 - [ ] Reproduzir música após o download com playsound
-- [ ] Salvar playlists com o nome personalizado
+- [X] Salvar playlists com o nome personalizado
 
 ----
 
