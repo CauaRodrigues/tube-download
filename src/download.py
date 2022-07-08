@@ -1,5 +1,12 @@
 from pytube import YouTube, Playlist
-from src.utils import Welcome
+from src.utils import Clear, Welcome
+
+import os
+from moviepy.editor import *
+import time
+
+from pydub import AudioSegment
+from pydub.playback import play
 
 
 def Videos(url):
@@ -50,16 +57,28 @@ def Playlists(urls):
 
 
 def Songs(url):
+    print('Buscando...')
+    time.sleep(3.2)
     yt = YouTube(url)
-    audio = yt.streams.filter(only_audio=True)[0]
+    audio = yt.streams.get_highest_resolution()
     audio.download(output_path='./downloads/music')
 
-    print(f'Download de "{yt.title}" completo!')
-    print('\n')
+    Welcome()
+    print('Convertendo arquivo...\n')
+    time.sleep(3.3)
+    mp4_file = VideoFileClip(os.path.join(f'./downloads/music/{yt.title}.mp4'))
+    mp4_file.audio.write_audiofile(
+        os.path.join(f'./downloads/music/{yt.title}.mp3'))
+
+    Welcome()
+    print(f'Download de "{yt.title}" completo!\n')
 
     option = str(input('Deseja reproduzir a música? [y/n]')).lower().strip()
 
     if option == 'y':
         print(f'Reproduzindo {yt.title}...')
+        song = AudioSegment.from_mp3(
+            os.path.join(f'./downloads/music/{yt.title}.mp3'))
+        play(song)
     else:
         pass

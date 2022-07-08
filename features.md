@@ -8,13 +8,13 @@
 	- [ ] Vídeo Privado
 	- [ ] Bloqueado na Região
 - [X] Salvar arquivos em uma pasta específica
-- [ ] Reproduzir música após o download com playsound
+- [X] Reproduzir música após o download com playsound
 - [X] Salvar playlists com o nome personalizado
 
 ----
 
 ## Avançando - Level 2
 
-- [ ] Converter arquivos mp4 em mp3
+- [X] Converter arquivos mp4 em mp3
 - [ ] Excluir videos, músicas ou playlists
 - [ ] Renomear nome do arquivo salvo
